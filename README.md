@@ -49,6 +49,13 @@ Elige un tiempo verbal y responde **5 preguntas** (puedes pedir otra serie).
 - **100 ejercicios de nivel medio** (10 por tiempo verbal)
 - Filtros por nivel y por tiempo verbal.
 
+### 3b. 📎 Preposiciones (Adjective + Preposition)
+El ejercicio de las fotos 5 y 6:
+- Teoría: reglas + **tabla con +40 pares** adjetivo/preposición (los de las fotos primero)
+- **40 ejercicios básicos** y **40 medios** con explicación y puntos
+- Botón 🎯 *5 preguntas al azar* para repaso rápido
+- Ejemplos con 🔊 Listening
+
 ### 4. 📝 Textos completos (igual que las fotos)
 Los 4 textos originales del test con todos sus huecos:
 - The Cybersecurity Incident (10 huecos)
@@ -58,7 +65,7 @@ Los 4 textos originales del test con todos sus huecos:
 
 ### 5. 🏆 Mis puntos
 - Cada acierto **suma puntos** (10 en básico, 15 en medio, 5 por hueco de texto).
-- Racha 🔥, porcentaje de acierto, progreso por tiempo verbal y rangos
+- Racha 🔥, porcentaje de acierto, progreso por tiempo verbal **y preposiciones** y rangos
   (Beginner 🌱 → Master 👑).
 - Todo se guarda en el navegador (`localStorage`): el alumno cierra y sigue donde estaba.
 
@@ -74,12 +81,13 @@ Los 4 textos originales del test con todos sus huecos:
 ## 📁 Archivos
 ```
 app/
-├── index.html      ← abrir este archivo
+├── index.html       ← abrir este archivo
 ├── styles.css
-├── theory.js       ← teoría de los 10 tiempos
-├── exercises.js    ← banco: 100 básicos + 100 medios
-├── texts.js        ← los 4 textos de las fotos
-└── app.js          ← lógica, corrección, audio y puntos
+├── theory.js        ← teoría de los 10 tiempos
+├── prepositions.js  ← teoría + 80 ejercicios de preposiciones
+├── exercises.js     ← banco: 100 básicos + 100 medios
+├── texts.js         ← los 4 textos de las fotos
+└── app.js           ← lógica, corrección, audio y puntos
 ```
 
 ## 🔄 Cómo actualizar (para la profesora)

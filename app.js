@@ -3,6 +3,7 @@
    ========================================================= */
 const TENSE_NAMES = {};
 THEORY.forEach(t => TENSE_NAMES[t.key] = t.name);
+TENSE_NAMES.prep = "Adjective + Preposition";
 
 const MOTIVATION_OK = [
   "¡Muy bien! 🎉","¡Excelente! 🌟","¡Perfecto! Sigue así 💪","¡Genial, lo has dominado! 🚀",
@@ -415,6 +416,64 @@ function renderTexts(){
 }
 
 /* =========================================================
+   PREPOSICIONES (adjective + preposition)
+   ========================================================= */
+let prepLevel = "basico";
+function renderPrepTheory(){
+  const p = PREP_THEORY;
+  document.getElementById("prepTheory").innerHTML = `
+    <div class="tense-card open">
+      <div class="tense-head" style="cursor:default">
+        <span class="dot" style="background:#f08c00"></span>
+        <div><h3>${p.title}</h3><span class="sp">${p.sp}</span></div>
+      </div>
+      <div class="tense-body" style="display:block">
+        <h4>Cómo funciona</h4>
+        <ul>${p.rules.map(r=>`<li>${md(r)}</li>`).join("")}</ul>
+        <h4>Tabla de preposiciones (las de las fotos, primero)</h4>
+        <table class="form-table">
+          <tr><th>Adjetivo + prep.</th><th>Significado</th></tr>
+          ${p.table.map(t=>`<tr><td><b>${t[0]}</b></td><td>${t[1]}</td></tr>`).join("")}
+        </table>
+        <h4>Ejemplos</h4>
+        ${p.ex.map(e=>`<div class="ex"><div class="en">${e[0]} <button class="btn ghost" style="padding:2px 8px;font-size:12px;margin-left:6px" data-say="${e[0].replace(/"/g,"")}">🔊</button></div><div class="es">${e[1]}</div></div>`).join("")}
+        <div class="error-box">${p.errors}</div>
+      </div>
+    </div>`;
+  document.getElementById("prepTheory").querySelectorAll("[data-say]").forEach(b=>{
+    b.addEventListener("click", ()=> speak(b.dataset.say));
+  });
+}
+function renderPrep(){
+  const list = PREP_BANK.filter(b=> b.lvl===prepLevel);
+  const host = document.getElementById("prepList");
+  const done = list.filter(b=> state.done[b.id] && state.done[b.id].ok).length;
+  host.innerHTML = `<div class="ex-top" style="margin-bottom:12px">
+      <span class="badge">${list.length} ejercicios</span>
+      <span class="badge done">${done} resueltos</span>
+    </div>` + list.map(exerciseCard).join("");
+  host.querySelectorAll(".ex-card").forEach(card=>{
+    bindCard(card, list.find(b=>b.id === card.dataset.ex));
+  });
+}
+function renderPrepPractice(){
+  const set = shuffle(PREP_BANK).slice(0,5);
+  const area = document.getElementById("prepPracticeArea");
+  area.innerHTML = `<div class="ex-top" style="margin:18px 0 12px">
+      <span class="badge">🎯 5 preguntas al azar</span>
+      <button class="btn ghost" id="prepAgain">🔄 Otra serie</button>
+      <button class="btn ghost" id="prepClose">✖ Cerrar</button>
+    </div><div id="prepSet"></div>`;
+  const host = document.getElementById("prepSet");
+  set.forEach(ex=>{
+    host.insertAdjacentHTML("beforeend", exerciseCard(ex));
+    bindCard(host.lastElementChild, ex);
+  });
+  document.getElementById("prepAgain").addEventListener("click", renderPrepPractice);
+  document.getElementById("prepClose").addEventListener("click", ()=>{ area.innerHTML=""; });
+}
+
+/* =========================================================
    PUNTOS / ESTADÍSTICAS
    ========================================================= */
 const RANKS = [
@@ -438,6 +497,8 @@ function renderStats(){
     const done = items.filter(b=> state.done[b.id] && state.done[b.id].ok).length;
     return {name:t.name, color:t.color, done, total:items.length};
   });
+  const prepDone = PREP_BANK.filter(b=> state.done[b.id] && state.done[b.id].ok).length;
+  perTense.push({name:"Adjective + Preposition", color:"#f08c00", done:prepDone, total:PREP_BANK.length});
 
   document.getElementById("statsArea").innerHTML = `
     <div class="rank">
@@ -500,6 +561,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderPractice("ps");
   renderBankChips();
   renderBank();
+  renderPrepTheory();
+  renderPrep();
+  document.querySelectorAll("#prepLevelChips .chip").forEach(c=>{
+    c.addEventListener("click", ()=>{
+      document.querySelectorAll("#prepLevelChips .chip").forEach(x=>x.classList.remove("active"));
+      c.classList.add("active");
+      prepLevel = c.dataset.level;
+      renderPrep();
+    });
+  });
+  document.getElementById("prepPractice").addEventListener("click", renderPrepPractice);
   renderTexts();
   renderStats();
 });
