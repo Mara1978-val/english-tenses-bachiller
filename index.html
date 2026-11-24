@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Tenses · 1º Bachiller</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🇬🇧</span>
+    <div>
+      <h1>English Tenses</h1>
+      <p>1º Bachiller · Gramática verbal</p>
+    </div>
+  </div>
+  <div class="points-box" id="pointsBox" title="Puntos acumulados">
+    <span class="star">⭐</span>
+    <span id="pointsValue">0</span>
+    <span class="pts-label">puntos</span>
+    <span class="streak" id="streakValue" title="Racha acertando">🔥 0</span>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="theory">📘 Teoría</button>
+  <button class="tab" data-tab="practice">🎯 Práctica</button>
+  <button class="tab" data-tab="bank">📚 Banco de ejercicios</button>
+  <button class="tab" data-tab="texts">📝 Textos de las fotos</button>
+  <button class="tab" data-tab="stats">🏆 Mis puntos</button>
+</nav>
+
+<main>
+
+  <!-- ===================== TEORÍA ===================== -->
+  <section class="panel active" id="panel-theory">
+    <div class="intro">
+      <h2>Los 10 tiempos verbales del examen</h2>
+      <p>Estas son todas las estructuras que aparecen en tus fotos. Lee la explicación, mira los ejemplos
+      y cuando te sientas listo vaya a <strong>🎯 Práctica</strong> o al <strong>📚 Banco</strong> para comprobar que lo entiendes.</p>
+    </div>
+    <div id="theoryList"></div>
+  </section>
+
+  <!-- ===================== PRÁCTICA ===================== -->
+  <section class="panel" id="panel-practice">
+    <div class="intro">
+      <h2>Práctica guiada por tiempo verbal</h2>
+      <p>Elige un tiempo verbal y responde 5 preguntas. Verás la solución con la explicación de por qué está bien o mal.</p>
+    </div>
+    <div class="chips" id="practiceChips"></div>
+    <div id="practiceArea"></div>
+  </section>
+
+  <!-- ===================== BANCO ===================== -->
+  <section class="panel" id="panel-bank">
+    <div class="intro">
+      <h2>Banco de ejercicios</h2>
+      <p>Más de <strong>40 ejercicios de nivel básico</strong> y <strong>40 de nivel medio</strong> con todas las estructuras de las fotos.
+      Escribe la respuesta y pulsa <em>Comprobar</em>: si te equivocas te explico por qué, y si aciertas sumas puntos 🎉.</p>
+    </div>
+    <div class="filters">
+      <div class="chips" id="levelChips">
+        <button class="chip active" data-level="basico">🌱 Básico (40+)</button>
+        <button class="chip" data-level="medio">🚀 Medio (40+)</button>
+      </div>
+      <div class="chips" id="tenseChips"></div>
+    </div>
+    <div id="bankList"></div>
+  </section>
+
+  <!-- ===================== TEXTOS ===================== -->
+  <section class="panel" id="panel-texts">
+    <div class="intro">
+      <h2>Textos completos (igual que las fotos)</h2>
+      <p>Completa los huecos del texto. Cuando compruebes, podrás escuchar el texto completo en inglés con el botón 🔊 <em>Listening</em>.</p>
+    </div>
+    <div id="textsList"></div>
+  </section>
+
+  <!-- ===================== PUNTOS ===================== -->
+  <section class="panel" id="panel-stats">
+    <div class="intro">
+      <h2>Tus puntos 🏆</h2>
+      <p>Aquí ves tu progreso. ¡Sigue acumulando puntos para subir de nivel!</p>
+    </div>
+    <div id="statsArea"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Hecho para 1º de Bachillerato · Contenido basado en las fotos del test de <em>eva.educamos.com</em></p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="theory.js"></script>
+<script src="exercises.js"></script>
+<script src="texts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
