@@ -1,13 +1,19 @@
 # 🇬🇧 English Tenses · App de gramática verbal para 1º de Bachiller
 
+**🌐 En línea:** https://mara1978-val.github.io/english-tenses-bachiller/
+**📦 Repositorio:** https://github.com/Mara1978-val/english-tenses-bachiller
+
 Aplicación creada a partir de las **6 fotos del test** de `eva.educamos.com`
 (*The Cybersecurity Incident*, *The Mystery of the Missing Painting*,
 *Summer Music Festival & Gap Year*, *Deep Space Bio-Astronomy Mission*…).
 
 ## ▶ Cómo abrirla
 
-Doble clic en **`index.html`** (o en `Abrir-app.bat`). No necesita internet,
-ni instalación, ni servidor: funciona en Chrome, Edge, Firefox o Safari.
+- **Por internet (recomendado para alumnos):** la URL de arriba. Solo necesitan el navegador.
+- **En local:** doble clic en **`index.html`** (o en `Abrir-app.bat`).
+
+No necesita instalación ni servidor: funciona en Chrome, Edge, Firefox o Safari
+(y también en tablet y móvil).
 
 > 🎧 **Audio:** el botón **🔊 Listening** usa la síntesis de voz del navegador/sistema.
 > En Windows, Edge y Chrome ofrecen voces inglesas muy naturales (Microsoft David / Zira).
@@ -75,3 +81,13 @@ app/
 ├── texts.js        ← los 4 textos de las fotos
 └── app.js          ← lógica, corrección, audio y puntos
 ```
+
+## 🔄 Cómo actualizar (para la profesora)
+1. Edita los archivos en la carpeta local.
+2. Abre una terminal en la carpeta `app` y ejecuta:
+   ```
+   git add .
+   git commit -m "Cambios"
+   git push
+   ```
+3. En 1 minuto GitHub Pages vuelve a publicarse automáticamente con los cambios.
