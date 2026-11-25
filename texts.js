@@ -6,6 +6,7 @@ const TEXTS = [
 
 {
   id:"t1",
+  lvl:"medio",
   title:"The Cybersecurity Incident",
   inst:"Complete the gaps using the correct form of the verbs in brackets: Present Simple, Present Continuous, Past Simple or Past Continuous.",
   tenses:"Present Simple · Present Continuous · Past Simple · Past Continuous",
@@ -35,6 +36,7 @@ const TEXTS = [
 
 {
   id:"t2",
+  lvl:"medio",
   title:"The Mystery of the Missing Painting",
   inst:"Complete the text using the correct narrative tense: Past Simple, Present Perfect or Past Perfect.",
   tenses:"Past Simple · Present Perfect · Past Perfect",
@@ -60,6 +62,7 @@ const TEXTS = [
 
 {
   id:"t3",
+  lvl:"medio",
   title:"Summer Music Festival & Gap Year",
   inst:"Complete the text using the correct future structures: Will, Be Going to, Present Simple, Present Continuous, Future Continuous or Future Perfect.",
   tenses:"Will · Be going to · Present Simple · Present Continuous · Future Continuous · Future Perfect",
@@ -89,6 +92,7 @@ const TEXTS = [
 
 {
   id:"t4",
+  lvl:"medio",
   title:"Deep Space Bio-Astronomy Mission",
   inst:"Read the passage carefully and fill in each blank with the correct form of the verb in brackets. Choose from: Present Simple, Present Continuous, Past Simple, Past Continuous, Present Perfect, Past Perfect, Future Simple (will), Be going to, Future Continuous or Future Perfect.",
   tenses:"Los 10 tiempos verbales",

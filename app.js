@@ -5,6 +5,16 @@ const TENSE_NAMES = {};
 THEORY.forEach(t => TENSE_NAMES[t.key] = t.name);
 TENSE_NAMES.prep = "Adjective + Preposition";
 
+/* Fusionamos la teoría ampliada (ortografía, stative, palabras clave) */
+if(typeof THEORY_EXTRA !== "undefined"){
+  THEORY.forEach(t => Object.assign(t, THEORY_EXTRA[t.key] || {}));
+}
+
+/* Todos los textos de las 5 partes */
+const ALL_TEXTS = [typeof TEXTS!=="undefined"?TEXTS:[], typeof TEXTS2!=="undefined"?TEXTS2:[],
+                   typeof TEXTS3!=="undefined"?TEXTS3:[], typeof TEXTS4!=="undefined"?TEXTS4:[],
+                   typeof TEXTS5!=="undefined"?TEXTS5:[]].flat();
+
 const MOTIVATION_OK = [
   "¡Muy bien! 🎉","¡Excelente! 🌟","¡Perfecto! Sigue así 💪","¡Genial, lo has dominado! 🚀",
   "¡Correcto! Eres un crack 🏆","¡Impresionante! 🎯","¡Brillante! Sigue acumulando puntos ✨",
@@ -205,7 +215,23 @@ function md(s){ return String(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>"); }
 
 function renderTheory(){
   const host = document.getElementById("theoryList");
-  host.innerHTML = THEORY.map((t,i)=>`
+
+  /* Guía rápida para elegir el tiempo verbal */
+  const guide = typeof QUICK_GUIDE !== "undefined" ? `
+    <div class="tense-card open" style="border-left:5px solid #0ca678">
+      <div class="tense-head" style="cursor:default;background:#f2fff7">
+        <span class="dot" style="background:#0ca678"></span>
+        <div><h3>🧭 ¿Cómo elijo el tiempo verbal?</h3><span class="sp">Guía rápida: pregunta → tiempo verbal</span></div>
+      </div>
+      <div class="tense-body" style="display:block">
+        <table class="form-table">
+          <tr><th>Pregunta que te haces</th><th>Tiempo verbal</th><th>Ejemplo</th></tr>
+          ${QUICK_GUIDE.map(g=>`<tr><td>${g[0]}</td><td><b>${g[1]}</b></td><td>${g[2]}</td></tr>`).join("")}
+        </table>
+      </div>
+    </div>` : "";
+
+  host.innerHTML = guide + THEORY.map((t,i)=>`
     <div class="tense-card ${i===0?"open":""}" data-t="${t.key}">
       <div class="tense-head">
         <span class="dot" style="background:${t.color}"></span>
@@ -219,10 +245,24 @@ function renderTheory(){
         <table class="form-table">
           ${t.form.map(f=>`<tr><th>${f[0]}</th><td>${f[1]}</td></tr>`).join("")}
         </table>
+        ${t.spell ? `<h4>📖 Ortografía del presente simple: ¿-s, -es o -ies?</h4>
+        <table class="form-table">
+          <tr><th>Regla</th><th>Ejemplos</th></tr>
+          ${t.spell.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td></tr>`).join("")}
+        </table>` : ""}
+        ${t.stative ? `<h4>🚫 Verbos que NUNCA van en continuo (stative verbs)</h4>
+        <table class="form-table">
+          <tr><th>Grupo</th><th>Verbos</th><th>Ejemplo correcto</th></tr>
+          ${t.stative.map(s=>`<tr><td><b>${s[0]}</b></td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join("")}
+        </table>` : ""}
+        <h4>🔑 Palabras que identifican este tiempo</h4>
+        ${t.markers ? `<table class="form-table">
+          <tr><th>Palabra / expresión</th><th>Significado</th><th>Ejemplo</th></tr>
+          ${t.markers.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td>${m[2]}</td></tr>`).join("")}
+        </table>` : ""}
+        ${t.tip ? `<div class="error-box" style="background:#e6f7ef;border-color:#b2e7cd;color:#0f5132">💡 <b>Truco:</b> ${t.tip}</div>` : ""}
         <h4>Ejemplos</h4>
         ${t.ex.map(e=>`<div class="ex"><div class="en">${e[0]} <button class="btn ghost" style="padding:2px 8px;font-size:12px;margin-left:6px" data-say="${e[0].replace(/"/g,"")}">🔊</button></div><div class="es">${e[1]}</div></div>`).join("")}
-        <h4>Palabras clave</h4>
-        <div class="signals">${t.signals.map(s=>`<span>${s}</span>`).join("")}</div>
         <div class="error-box">⚠️ ${t.error}</div>
         <div style="margin-top:12px">
           <button class="btn practice-of" data-t="${t.key}">🎯 Practicar este tiempo verbal</button>
@@ -407,11 +447,20 @@ function bindText(card, t){
   card.querySelector(".reveal").addEventListener("click", reveal);
   listenBtn.addEventListener("click", ()=> speak(correctText()));
 }
+let textsLevel = "all";
 function renderTexts(){
+  const list = ALL_TEXTS.filter(t=> textsLevel==="all" || t.lvl===textsLevel);
   const host = document.getElementById("textsList");
-  host.innerHTML = TEXTS.map(textCard).join("");
+  const nBas = ALL_TEXTS.filter(t=>t.lvl==="basico").length;
+  const nMed = ALL_TEXTS.filter(t=>t.lvl==="medio").length;
+  const totalBlanks = list.reduce((n,t)=> n + t.segments.filter(s=>typeof s!=="string").length, 0);
+  host.innerHTML = `<div class="ex-top" style="margin-bottom:12px">
+      <span class="badge">${list.length} textos</span>
+      <span class="badge">${totalBlanks} huecos</span>
+      <span class="badge">${nBas} básicos · ${nMed} medios</span>
+    </div>` + list.map(textCard).join("");
   host.querySelectorAll(".text-card").forEach(card=>{
-    bindText(card, TEXTS.find(t=>t.id===card.dataset.text));
+    bindText(card, ALL_TEXTS.find(t=>t.id===card.dataset.text));
   });
 }
 
@@ -573,5 +622,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
   });
   document.getElementById("prepPractice").addEventListener("click", renderPrepPractice);
   renderTexts();
+  document.querySelectorAll("#textsLevelChips .chip").forEach(c=>{
+    c.addEventListener("click", ()=>{
+      document.querySelectorAll("#textsLevelChips .chip").forEach(x=>x.classList.remove("active"));
+      c.classList.add("active");
+      textsLevel = c.dataset.level;
+      renderTexts();
+    });
+  });
   renderStats();
 });

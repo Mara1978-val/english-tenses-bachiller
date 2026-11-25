@@ -1,0 +1,261 @@
+/* =========================================================
+   TEXTOS COMPLETOS · BLOQUE 4 (textos medios t29 - t39)
+   ========================================================= */
+const TEXTS4 = [
+
+{
+  id:"t29", lvl:"medio",
+  title:"Night Shift at the Hospital",
+  inst:"Complete with the Past Simple or the Past Continuous.",
+  tenses:"Past Simple · Past Continuous",
+  segments:[
+    "Last night the emergency room ",
+    {v:"be", a:["was"], why:"Sujeto singular en pasado → was."},
+    " extremely busy. While the nurses ",
+    {v:"check", a:["were checking"], why:"While + sujeto plural → were checking."},
+    " the patients, a new ambulance ",
+    {v:"arrive", a:["arrived"], why:"Acción corta → arrived."},
+    " at the door. Doctors ",
+    {v:"work", a:["were working"], why:"Dos casos a la vez → were working."},
+    " on two cases at the same time when the lights ",
+    {v:"go", a:["went"], why:"Interrupción repentina → went."},
+    " out for a minute. Nobody ",
+    {v:"panic", a:["panicked"], why:"panicked (con -ed)."},
+    "; they ",
+    {v:"continue", a:["continued"], why:"Pasado simple: continued."},
+    " with the help of torches."
+  ]
+},
+{
+  id:"t30", lvl:"medio",
+  title:"Our Class Website",
+  inst:"Complete with the Present Simple, the Present Continuous or will.",
+  tenses:"Present Simple · Present Continuous · Will",
+  segments:[
+    "Our class ",
+    {v:"have", a:["has"], why:"'Since last mes' → presente simple con he/she/it: has."},
+    " its own website since last month. Every week we ",
+    {v:"post", a:["post"], why:"'Every week' → hábito → post (we)."},
+    " news and photos there. Right now I ",
+    {v:"upload", a:["am uploading"], why:"'Right now' → am uploading."},
+    " the pictures from the science fair and Marta ",
+    {v:"write", a:["is writing"], why:"Marta está escribiendo ahora → is writing."},
+    " a new article. If you ",
+    {v:"visit", a:["visit"], why:"Condicional tipo 1: en la cláusula if va presente simple."},
+    " the page tomorrow, you ",
+    {v:"see", a:["will see"], why:"Resultado futuro → will see."},
+    " the final version. I'm sure it ",
+    {v:"look", a:["will look"], why:"Opinión sobre el futuro → will look."},
+    " amazing."
+  ]
+},
+{
+  id:"t31", lvl:"medio",
+  title:"The Lost Necklace",
+  inst:"Complete with the correct past tense.",
+  tenses:"Past Simple · Past Continuous",
+  segments:[
+    "Elena ",
+    {v:"wear", a:["wore"], why:"wear → wore (irregular)."},
+    " her grandmother's necklace at the party. When she ",
+    {v:"get", a:["got"], why:"get → got."},
+    " home that night, she ",
+    {v:"notice", a:["noticed"], why:"noticed con -ed."},
+    " it was gone. Her friends ",
+    {v:"help", a:["helped"], why:"Ayuda en el pasado → helped."},
+    " her search the whole house. The next morning, Elena ",
+    {v:"find", a:["found"], why:"find → found."},
+    " the necklace under the sofa — the dog ",
+    {v:"play", a:["was playing"], why:"El perro estaba jugando mientras tanto → was playing."},
+    " with it while everyone ",
+    {v:"sleep", a:["was sleeping"], why:"'Everyone' es singular → was sleeping."},
+    ". She ",
+    {v:"never / take", a:["never took"], why:"Costumbre pasada concreta → never took."},
+    " it off again."
+  ]
+},
+{
+  id:"t32", lvl:"medio",
+  title:"Travelling Through Europe",
+  inst:"Complete with the Present Perfect, the Past Simple or the Past Perfect.",
+  tenses:"Present Perfect · Past Simple · Past Perfect",
+  segments:[
+    "I ",
+    {v:"visit", a:["have visited"], why:"'Since I started' hasta ahora → have visited."},
+    " six countries since I ",
+    {v:"start", a:["started"], why:"'Since' + pasado simple → started."},
+    " my gap year. Last summer I ",
+    {v:"spend", a:["spent"], why:"'Last summer' → spent."},
+    " three weeks in Italy, where I ",
+    {v:"eat", a:["ate"], why:"ate (irregular)."},
+    " the best pizza of my life. I ",
+    {v:"never / see", a:["had never seen"], why:"'Before' ese viaje → anterior a otro pasado: had never seen."},
+    " anything like the Venetian canals before. So far my friends ",
+    {v:"enjoy", a:["have enjoyed"], why:"'So far' → have enjoyed."},
+    " every photo I ",
+    {v:"post", a:["have posted"], why:"Resultado actual: las fotos que he subido → have posted."},
+    " online."
+  ]
+},
+{
+  id:"t33", lvl:"medio",
+  title:"The Morning of the Exam",
+  inst:"Complete with the Past Simple or the Past Continuous.",
+  tenses:"Past Simple · Past Continuous",
+  segments:[
+    "I ",
+    {v:"wake", a:["woke"], why:"wake → woke (irregular)."},
+    " up late on the morning of my final exam. While I ",
+    {v:"run", a:["was running"], why:"While + acción larga → was running."},
+    " to the bus stop, my phone ",
+    {v:"fall", a:["fell"], why:"Acción corta que interrumpe → fell."},
+    " out of my pocket. When I ",
+    {v:"arrive", a:["arrived"], why:"Después de when → pasado simple: arrived."},
+    " at school, I ",
+    {v:"realise", a:["realised"], why:"Di cuenta → realised."},
+    " I had left my pencil case at home. Fortunately, my deskmate ",
+    {v:"lend", a:["lent"], why:"lend → lent (irregular)."},
+    " me a pen and I ",
+    {v:"finish", a:["finished"], why:"Acción terminada → finished."},
+    " the test on time."
+  ]
+},
+{
+  id:"t34", lvl:"medio",
+  title:"Planets and Space",
+  inst:"Complete with the Present Simple or will.",
+  tenses:"Present Simple · Will",
+  segments:[
+    "The Earth ",
+    {v:"go", a:["goes"], why:"Verdad universal + it → goes."},
+    " around the Sun in 365 days. Mars ",
+    {v:"be", a:["is"], why:"Mars es singular → is."},
+    " smaller than our planet and it ",
+    {v:"have", a:["has"], why:"Tercera persona → has."},
+    " two moons. Mars ",
+    {v:"spin", a:["spins"], why:"Tercera persona → spins."},
+    " more slowly than the Earth. In the future, robots ",
+    {v:"search", a:["will search"], why:"'In the future' → will search."},
+    " for signs of life and humans ",
+    {v:"set", a:["will set"], why:"Futuro → will set foot."},
+    " on the planet. Nobody knows exactly when this ",
+    {v:"happen", a:["will happen"], why:"Predicción sobre un momento futuro → will happen."},
+    " ."
+  ]
+},
+{
+  id:"t35", lvl:"medio",
+  title:"The Charity Run",
+  inst:"Complete with be going to or will.",
+  tenses:"Be going to · Will",
+  segments:[
+    "This Saturday our town ",
+    {v:"hold", a:["is going to hold"], why:"Plan ya organizado → is going to hold."},
+    " a charity run for the children's hospital. More than 500 people ",
+    {v:"take", a:["are going to take"], why:"Plan decidido → are going to take part."},
+    " part and I ",
+    {v:"run", a:["am going to run","'m going to run"], why:"Mi plan personal → am going to run."},
+    " with my classmates. Look at the poster! The organisers ",
+    {v:"give", a:["will give"], why:"Se promete en el momento → will give."},
+    " medals to everyone who finishes. My uncle ",
+    {v:"not / run", a:["isn't going to run","is not going to run"], why:"Decisión ya tomada → isn't going to run."},
+    " because he ",
+    {v:"have", a:["is going to have"], why:"Cita ya arreglada → is going to have an operation."},
+    " an operation next week, but he ",
+    {v:"donate", a:["will donate"], why:"Buena voluntad en el momento → will donate."},
+    " some money."
+  ]
+},
+{
+  id:"t36", lvl:"medio",
+  title:"Broken Promises",
+  inst:"Complete with the Past Simple or the Past Perfect.",
+  tenses:"Past Simple · Past Perfect",
+  segments:[
+    "By the time the bus ",
+    {v:"reach", a:["reached"], why:"'By the time' + pasado → reached."},
+    " the station, the train ",
+    {v:"already / leave", a:["had already left"], why:"El tren ya había salido antes → had already left."},
+    ". Rosa ",
+    {v:"promise", a:["had promised"], why:"Prometió ANTES de irse → had promised."},
+    " to wait for me, but she ",
+    {v:"go", a:["went"], why:"Acción posterior en pasado simple → went."},
+    " home before I ",
+    {v:"arrive", a:["arrived"], why:"Después de before → arrived."},
+    " . I ",
+    {v:"never / feel", a:["had never felt"], why:"Hasta ese momento → had never felt."},
+    " so disappointed. When she ",
+    {v:"see", a:["saw"], why:"Vio mi cara → saw."},
+    " my face, she apologised immediately."
+  ]
+},
+{
+  id:"t37", lvl:"medio",
+  title:"Learning Languages",
+  inst:"Complete with the Present Simple or the Present Perfect.",
+  tenses:"Present Simple · Present Perfect",
+  segments:[
+    "English ",
+    {v:"be", a:["is"], why:"Hecho general → is."},
+    " the most widely spoken language in the world. I ",
+    {v:"study", a:["have studied"], why:"'For eight years' hasta hoy → have studied."},
+    " it for eight years and I ",
+    {v:"already / learn", a:["have already learned","have already learnt"], why:"'Already' con resultado actual → have already learned."},
+    " more than 2,000 words. My sister never ",
+    {v:"study", a:["studies"], why:"Hábito con she → studies (nunca en continuo con 'never' de rutina)."},
+    " English, but she ",
+    {v:"watch", a:["watches"], why:"'Every evening' → watches."},
+    " American series without subtitles every evening. So far I ",
+    {v:"not / find", a:["haven't found","have not found"], why:"'So far' en negativa → haven't found."},
+    " a better method than reading, and I ",
+    {v:"recommend", a:["recommend"], why:"Recomendación habitual → presente simple: recommend."},
+    " it to everyone."
+  ]
+},
+{
+  id:"t38", lvl:"medio",
+  title:"The Secret Recipe",
+  inst:"Complete with the Past Simple, the Present Perfect or the Past Perfect.",
+  tenses:"Past Simple · Present Perfect · Past Perfect",
+  segments:[
+    "Nonna Lucia ",
+    {v:"keep", a:["kept"], why:"keep → kept (irregular)."},
+    " the recipe for her famous pasta sauce secret for decades. When she ",
+    {v:"die", a:["died"], why:"'When she died' → pasado simple: died."},
+    " in 2019, nobody ",
+    {v:"know", a:["knew"], why:"En ese momento nadie la sabía → knew."},
+    " the ingredients. Last year my cousin ",
+    {v:"find", a:["found"], why:"'Last year' → found."},
+    " an old notebook in the attic: apparently Nonna ",
+    {v:"write", a:["had written"], why:"La escribió mucho antes de que se encontrara el cuaderno → had written."},
+    " everything down long before. Since then, the family ",
+    {v:"cook", a:["has cooked"], why:"'Since then' hasta ahora → has cooked."},
+    " the sauce every Sunday, and we ",
+    {v:"never / taste", a:["have never tasted"], why:"Experiencia hasta hoy → have never tasted."},
+    " anything better."
+  ]
+},
+{
+  id:"t39", lvl:"medio",
+  title:"After the Storm",
+  inst:"Complete with the Past Simple, the Past Continuous or the Present Perfect.",
+  tenses:"Past Simple · Past Continuous · Present Perfect",
+  segments:[
+    "A terrible storm ",
+    {v:"hit", a:["hit"], why:"hit tiene el pasado igual: hit → hit."},
+    " the coast last night. While we ",
+    {v:"sleep", a:["were sleeping"], why:"While + were sleeping."},
+    ", the wind ",
+    {v:"break", a:["broke"], why:"Acción corta → broke."},
+    " the windows of the kitchen. In the morning, the streets ",
+    {v:"be", a:["were"], why:"Sujeto plural en pasado → were."},
+    " full of branches and leaves. Since then, the neighbours ",
+    {v:"work", a:["have been working","have worked"], why:"'Since then' hasta ahora → present perfect (duración en curso)."},
+    " together to clean everything. So far nobody ",
+    {v:"report", a:["has reported"], why:"'So far' + nobody → has reported."},
+    " any serious damage, and the town ",
+    {v:"recover", a:["has already recovered"], why:"Resultado actual → has already recovered."},
+    " ."
+  ]
+}
+];

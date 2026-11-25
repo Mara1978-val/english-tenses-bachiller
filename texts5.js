@@ -1,0 +1,263 @@
+/* =========================================================
+   TEXTOS COMPLETOS · BLOQUE 5 (textos medios t40 - t50)
+   ========================================================= */
+const TEXTS5 = [
+
+{
+  id:"t40", lvl:"medio",
+  title:"The Great Bake-Off",
+  inst:"Complete with the Past Simple, the Present Perfect or the Present Continuous.",
+  tenses:"Past Simple · Present Perfect · Present Continuous",
+  segments:[
+    "Last Saturday our school ",
+    {v:"organise", a:["organised"], why:"organise + -ed → organised."},
+    " a charity bake-off. Twelve teams ",
+    {v:"enter", a:["entered"], why:"Acción pasada concreta → entered."},
+    " the competition and the gym ",
+    {v:"smell", a:["smelled","smelt"], why:"Pasado simple: smelled (US) o smelt (UK)."},
+    " of chocolate all morning. The judges ",
+    {v:"taste", a:["tasted"], why:"Antes de anunciar el ganador → tasted."},
+    " every cake before they announced the winner. Since then, the winning recipe ",
+    {v:"become", a:["has become"], why:"'Since then' hasta hoy → has become."},
+    " famous in the whole town. Today the students ",
+    {v:"share", a:["are sharing"], why:"'Today' en curso → are sharing."},
+    " the news on social media and the headteacher ",
+    {v:"promise", a:["has promised"], why:"Promesa con efecto actual → has promised."},
+    " a new event next term. We ",
+    {v:"already / win", a:["have already won"], why:"Resultado actual con 'already' → have already won."},
+    " 500 euros for the charity."
+  ]
+},
+{
+  id:"t41", lvl:"medio",
+  title:"Digital Nomads",
+  inst:"Complete with the Present Simple or the Present Continuous.",
+  tenses:"Present Simple · Present Continuous",
+  segments:[
+    "More and more people ",
+    {v:"work", a:["are working"], why:"Tendencia actual hoy en día → are working."},
+    " from anywhere in the world today. A digital nomad ",
+    {v:"not / need", a:["doesn't need","does not need"], why:"Negativa con 'he or she' → doesn't need."},
+    " an office: he or she ",
+    {v:"use", a:["uses"], why:"Tercera persona → uses."},
+    " a laptop and a good internet connection. Right now, thousands of freelancers ",
+    {v:"design", a:["are designing"], why:"'Right now' → are designing."},
+    " websites from cafés in Bali. Most of them ",
+    {v:"change", a:["change"], why:"Hábito (cada tres meses) → change (plural)."},
+    " country every three months, and they ",
+    {v:"enjoy", a:["enjoy"], why:"Estado permanente con 'they' → enjoy."},
+    " this lifestyle enormously. However, the internet ",
+    {v:"not / forgive", a:["doesn't forgive","does not forgive"], why:"Verbo de estado con 'the internet' (it) → doesn't forgive."},
+    " slow connections!"
+  ]
+},
+{
+  id:"t42", lvl:"medio",
+  title:"My First Interview",
+  inst:"Complete with the Past Simple or the Present Perfect.",
+  tenses:"Past Simple · Present Perfect",
+  segments:[
+    "Yesterday I ",
+    {v:"have", a:["had"], why:"'Yesterday' → pasado simple: had."},
+    " my first job interview. The HR manager ",
+    {v:"ask", a:["asked"], why:"Cadena de acciones pasadas → asked."},
+    " me why I ",
+    {v:"choose", a:["had chosen"], why:"Elegí la empresa ANTES de la entrevista → had chosen."},
+    " that company. I ",
+    {v:"explain", a:["explained"], why:"explained con -ed."},
+    " that I ",
+    {v:"follow", a:["have followed","have been following"], why:"'For years' hasta hoy → present perfect."},
+    " their projects for years. Last night they ",
+    {v:"send", a:["sent"], why:"'Last night' → sent."},
+    " me an email with a job offer, and I ",
+    {v:"not / reply", a:["haven't replied","have not replied"], why:"'Yet' en negativa → haven't replied."},
+    " yet."
+  ]
+},
+{
+  id:"t43", lvl:"medio",
+  title:"Climate Change",
+  inst:"Complete with the Present Simple, the Present Perfect, the Conditional or will.",
+  tenses:"Present Simple · Present Perfect · Will",
+  segments:[
+    "The planet ",
+    {v:"get", a:["gets"], why:"Hecho general con 'every year' → gets."},
+    " warmer every year. Scientists ",
+    {v:"warn", a:["have warned"], why:"'Since the 1990s' hasta hoy → have warned."},
+    " us about the dangers since the 1990s, but emissions ",
+    {v:"not / fall", a:["haven't fallen","have not fallen"], why:"'Yet' en negativa → haven't fallen."},
+    " yet. If we ",
+    {v:"not / act", a:["don't act","do not act"], why:"Condicional tipo 1: en la cláusula if va presente simple negativo."},
+    " now, coastal cities ",
+    {v:"disappear", a:["will disappear"], why:"Resultado futuro → will disappear."},
+    " by 2100. On the positive side, renewable energy ",
+    {v:"become", a:["has become"], why:"Cambio con efecto presente → has become."},
+    " cheaper and millions of homes ",
+    {v:"use", a:["will use"], why:"Predicción futura → will use."},
+    " solar power in the future."
+  ]
+},
+{
+  id:"t44", lvl:"medio",
+  title:"The Football Final",
+  inst:"Complete with the Past Simple or the Past Continuous.",
+  tenses:"Past Simple · Past Continuous",
+  segments:[
+    "The final ",
+    {v:"start", a:["started"], why:"Hora concreta pasada → started."},
+    " at nine o'clock last night. While our keeper ",
+    {v:"warm", a:["was warming"], why:"While + acción larga → was warming up."},
+    " up, the crowd ",
+    {v:"chant", a:["chanted"], why:"Acción puntual → chanted."},
+    " our team's name. In the 40th minute, Luis ",
+    {v:"score", a:["scored"], why:"score + -ed → scored."},
+    " a wonderful goal, but the referee ",
+    {v:"disallow", a:["disallowed"], why:"disallowed con -ed."},
+    " it because our striker ",
+    {v:"stand", a:["was standing"], why:"Estaba en posición de fuera de juego → was standing."},
+    " offside. In the second half the rain ",
+    {v:"pour", a:["was pouring"], why:"Cayendo a cántaros → was pouring."},
+    " down and the players ",
+    {v:"slip", a:["slipped"], why:"slip → slipped (doble p)."},
+    " on the wet grass."
+  ]
+},
+{
+  id:"t45", lvl:"medio",
+  title:"Volunteering",
+  inst:"Complete with the Present Perfect, the Present Simple or can.",
+  tenses:"Present Perfect · Present Simple · Modal verb",
+  segments:[
+    "I ",
+    {v:"volunteer", a:["have volunteered"], why:"'Since September' hasta hoy → have volunteered."},
+    " at the local food bank since September. Every Saturday we ",
+    {v:"give", a:["give"], why:"'Every Saturday' → hábito → give."},
+    " food to families in need. This month we ",
+    {v:"help", a:["have helped"], why:"'This month' aún en curso → have helped."},
+    " more than sixty people and the organisation ",
+    {v:"thank", a:["has thanked"], why:"Resultado actual → has thanked."},
+    " all the volunteers publicly. Many students ",
+    {v:"not / know", a:["don't know","do not know"], why:"Negativa con 'students' (they) → don't know."},
+    " that they ",
+    {v:"can", a:["can"], why:"Modal can + verbo base: they can join us."},
+    " join us too — they only ",
+    {v:"need", a:["need"], why:"Hábito/general → presente simple: need."},
+    " to fill in a form."
+  ]
+},
+{
+  id:"t46", lvl:"medio",
+  title:"The Time Capsule",
+  inst:"Complete with be going to, will, the Future Perfect or the Present Simple.",
+  tenses:"Be going to · Will · Future Perfect · Present Simple",
+  segments:[
+    "The school ",
+    {v:"bury", a:["is going to bury"], why:"Plan ya decidido → is going to bury."},
+    " a time capsule in the garden next month. In fifty years, the students ",
+    {v:"open", a:["will open"], why:"Futuro lejano → will open."},
+    " it and ",
+    {v:"see", a:["will see"], why:"will open AND will see (misma estructura)."},
+    " what life was like in 2026. Before that day arrives, the museum ",
+    {v:"already / receive", a:["will have already received"], why:"Antes de esa fecha futura → future perfect."},
+    " all the objects we are collecting now. If you ",
+    {v:"want", a:["want"], why:"Condicional tipo 1: en la cláusula if → presente simple."},
+    " to add something, just ",
+    {v:"bring", a:["bring"], why:"En imperativo tras 'just' → bring (sin -s)."},
+    " an old photo. I'm sure future generations ",
+    {v:"find", a:["will find"], why:"Certeza → will find."},
+    " it fascinating."
+  ]
+},
+{
+  id:"t47", lvl:"medio",
+  title:"A Day at the Museum",
+  inst:"Complete with the Past Simple, the Past Perfect or the Present Perfect.",
+  tenses:"Past Simple · Past Perfect · Present Perfect",
+  segments:[
+    "Last Thursday our class ",
+    {v:"visit", a:["visited"], why:"'Last Thursday' → visited."},
+    " the modern art museum. Our guide ",
+    {v:"show", a:["showed"], why:"showed con -ed."},
+    " us paintings that ",
+    {v:"change", a:["changed"], why:"Relativo en pasado → changed."},
+    " the history of art. I ",
+    {v:"never / see", a:["had never seen","have never seen"], why:"'Before' ese día → anterior a otro pasado."},
+    " anything like it before. Since that visit, I ",
+    {v:"read", a:["have read"], why:"'Since that visit' hasta hoy → have read."},
+    " three books about contemporary artists and my friends ",
+    {v:"start", a:["have started"], why:"Resultado actual → have started."},
+    " a small art club at school. We ",
+    {v:"already / plan", a:["have already planned"], why:"Ya está planeado → have already planned."},
+    " our next trip."
+  ]
+},
+{
+  id:"t48", lvl:"medio",
+  title:"Exam Week",
+  inst:"Complete with the Present Continuous, the Present Perfect or will.",
+  tenses:"Present Continuous · Present Perfect · Will",
+  segments:[
+    "These days the whole school ",
+    {v:"prepare", a:["is preparing"], why:"Sujeto singular 'the whole school' → is preparing."},
+    " for the final exams. My classmates ",
+    {v:"study", a:["are studying"], why:"Estas tardes en curso → are studying."},
+    " in the library every afternoon and I ",
+    {v:"already / finish", a:["have already finished"], why:"Resultado actual con 'already' → have already finished."},
+    " two revision booklets. The teachers ",
+    {v:"give", a:["have given"], why:"'This term' hasta hoy → have given."},
+    " us a lot of practice tests this term. Nobody in class ",
+    {v:"feel", a:["feels"], why:"feel es verbo de estado → simple con 'nobody' (it): feels."},
+    " completely ready yet, but we ",
+    {v:"not / fail", a:["haven't failed","have not failed"], why:"'So far' en negativa → haven't failed."},
+    " a single test so far. Keep calm — we ",
+    {v:"do", a:["will do"], why:"Promesa/decisión → we'll do our best."},
+    " our best!"
+  ]
+},
+{
+  id:"t49", lvl:"medio",
+  title:"The Mysterious Letter",
+  inst:"Complete with the Past Simple or the Past Perfect.",
+  tenses:"Past Simple · Past Perfect",
+  segments:[
+    "When Clara ",
+    {v:"open", a:["opened"], why:"Después de when → pasado simple: opened."},
+    " the door, a letter ",
+    {v:"fall", a:["fell"], why:"Hecho puntual → fell."},
+    " to the floor. Someone ",
+    {v:"put", a:["had put"], why:"La puso ANTES de que Clara llegara → had put."},
+    " it under the mat before she ",
+    {v:"arrive", a:["arrived"], why:"Después de before → arrived."},
+    " home. Clara ",
+    {v:"read", a:["read"], why:"read tiene el pasado igual (se pronuncia 'red')."},
+    " it twice: the writer ",
+    {v:"already / move", a:["had already moved"], why:"Se había marchado antes → had already moved."},
+    " away from the city. She ",
+    {v:"never / forget", a:["never forgot"], why:"Pasado simple: never forgot."},
+    " those words."
+  ]
+},
+{
+  id:"t50", lvl:"medio",
+  title:"Our Planet in 2050",
+  inst:"Complete with will, the Future Continuous, the Future Perfect or the Present Simple.",
+  tenses:"Will · Future Continuous · Future Perfect · Present Simple",
+  segments:[
+    "Experts agree that by 2050 the world ",
+    {v:"change", a:["will have changed"], why:"'By 2050' → futuro perfecto: will have changed."},
+    " completely. Most cars ",
+    {v:"be", a:["will be"], why:"Predicción futura → will be."},
+    " electric and people ",
+    {v:"work", a:["will work"], why:"Futuro sencillo → will work."},
+    " from home more often. This time in thirty years, we ",
+    {v:"probably / live", a:["will probably be living"], why:"En proceso dentro de 30 años → future continuous."},
+    " in smarter cities. If we ",
+    {v:"protect", a:["protect"], why:"Condicional tipo 1: en if → presente simple."},
+    " the forests today, many species ",
+    {v:"survive", a:["will survive"], why:"Resultado futuro → will survive."},
+    ". One thing is certain: technology ",
+    {v:"not / replace", a:["won't replace","will not replace"], why:"Negativa con will → won't replace."},
+    " human creativity."
+  ]
+}
+];

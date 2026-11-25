@@ -22,11 +22,19 @@ No necesita instalación ni servidor: funciona en Chrome, Edge, Firefox o Safari
 
 ### 1. Teoría (10 tiempos verbales)
 Los 10 tiempos/estructuras que salen en tus fotos, cada uno con:
+- **🧭 Guía rápida** para elegir el tiempo verbal (pregunta → tiempo → ejemplo)
 - Cuándo se usa
 - Tabla de estructura (afirmativa, negativa, pregunta)
+- **📖 Ortografía del presente simple:** cuándo va **-s**, cuándo **-es** y cuándo **-ies**
+  (*play → plays · go → goes · study → studies · consonante + y → -ies, vocal + y → -s…*),
+  irregularos `have → has` / `do → does` y la base tras *does / doesn't / didn't*
+- **🚫 Verbos que NUNCA van en continuo** (stative verbs: *know, like, have, see…*)
+  con sus excepciones (*I am thinking / we are having lunch / I am seeing the dentist*)
+- **🔑 Palabras que identifican cada tiempo** con significado y ejemplo
+  (*every day, right now, yesterday, while, ever/never, just/yet, for/since,
+  before, by the time, this time tomorrow, by Friday…*)
 - Ejemplos con traducción (y botón 🔊 para oírlos)
-- Palabras clave / marcadores temporales
-- ⚠️ Errores típicos del examen
+- 💡 **Truco** para reconocerlo rápido + ⚠️ errores típicos del examen
 
 | # | Tiempo verbal |
 |---|---|
@@ -57,11 +65,15 @@ El ejercicio de las fotos 5 y 6:
 - Ejemplos con 🔊 Listening
 
 ### 4. 📝 Textos completos (igual que las fotos)
-Los 4 textos originales del test con todos sus huecos:
-- The Cybersecurity Incident (10 huecos)
-- The Mystery of the Missing Painting (8 huecos)
-- Summer Music Festival & Gap Year (10 huecos)
-- Deep Space Bio-Astronomy Mission (15 huecos)
+**50 textos** para practicar todos los tiempos verbales en contexto, con filtros
+(Los 50 · 🌱 Básicos 12 · 🚀 Medios 38) y botón 🔊 *Listening* tras comprobar:
+- Los 4 textos originales del test:
+  - The Cybersecurity Incident (10 huecos)
+  - The Mystery of the Missing Painting (8 huecos)
+  - Summer Music Festival & Gap Year (10 huecos)
+  - Deep Space Bio-Astronomy Mission (15 huecos)
+- **46 textos nuevos** (rutinas, viajes, futuro, clima, música, ciencia…)
+  que cubren los 10 tiempos verbales, con la explicación de cada hueco.
 
 ### 5. 🏆 Mis puntos
 - Cada acierto **suma puntos** (10 en básico, 15 en medio, 5 por hueco de texto).
@@ -78,15 +90,24 @@ Los 4 textos originales del test con todos sus huecos:
 - Botón **🔊 Listening** para oír la frase/texto completo en inglés
   (aparece en cuanto el alumno ve la solución).
 
+## 🎨 Diseño
+Fondo **verde claro** y página **ancha** (hasta 1440 px) con el banco de ejercicios
+en dos columnas en pantallas grandes; se adapta a móvil y tablet.
+
 ## 📁 Archivos
 ```
 app/
 ├── index.html       ← abrir este archivo
-├── styles.css
-├── theory.js        ← teoría de los 10 tiempos
+├── styles.css       ← diseño (fondo verde claro, página ancha)
+├── theory.js        ← teoría base de los 10 tiempos
+├── theory_extra.js  ← ortografía, stative verbs, palabras clave y guía rápida
 ├── prepositions.js  ← teoría + 80 ejercicios de preposiciones
 ├── exercises.js     ← banco: 100 básicos + 100 medios
-├── texts.js         ← los 4 textos de las fotos
+├── texts.js         ← los 4 textos originales de las fotos
+├── texts2.js        ← textos t5–t16 (básicos)
+├── texts3.js        ← textos t17–t28 (medios)
+├── texts4.js        ← textos t29–t39 (medios)
+├── texts5.js        ← textos t40–t50 (medios)
 └── app.js           ← lógica, corrección, audio y puntos
 ```
 
