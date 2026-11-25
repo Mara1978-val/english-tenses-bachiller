@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
   <rect width="400" height="400" fill="#e9f8ee"/>
-  <g opacity="0.5">
+  <g opacity="0.8">
 
     <!-- 1 · montañas (teal) -->
     <g transform="translate(62,66) rotate(-10)">

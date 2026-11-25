@@ -80,6 +80,18 @@ El ejercicio de las fotos 5 y 6:
 - Racha 🔥, porcentaje de acierto, progreso por tiempo verbal **y preposiciones** y rangos
   (Beginner 🌱 → Master 👑).
 - Todo se guarda en el navegador (`localStorage`): el alumno cierra y sigue donde estaba.
+- ⭕️ **Puntos a cero** para empezar de cero (clave de guardado `v2`).
+
+## 🔎 Diccionario y traducción (siempre visible)
+- **Cuadro de diccionario fijo en la cabecera** (pegado arriba del todo, se ve en todos
+  los apartados mientras se desplaza por la página): escribe una palabra o frase en inglés
+  y verás la **traducción al español**, la fonética y la definición, con 🔊 para escucharlo.
+- **Ratón encima de una palabra** (enunciados y ejemplos en inglés): aparece un tooltip
+  con su significado en español y su definición.
+- **Seleccionar una frase** con el ratón: aparece su traducción al español al lado,
+  también con botón 🔊.
+- Traducción con *MyMemory* y definiciones con *dictionaryapi.dev* (gratuitos, con caché
+  y mensaje claro si no hay conexión).
 
 ## ✅ Corrección inteligente
 - Si **acierta**: mensaje de refuerzo positivo + explicación de la regla + puntos.
@@ -92,8 +104,8 @@ El ejercicio de las fotos 5 y 6:
 
 ## 🎨 Diseño
 - **Fondo tipo portadas de libros juveniles** (`bg-covers.svg`: montañas, lunas, olas,
-  estrellas… en tonos teal, coral, oro y lavanda) con un velo verde claro por encima
-  para que el texto se lea perfecto.
+  estrellas, corazones y soles… en tonos teal, coral, oro y lavanda) bien visible,
+  con un velo verde claro suave por encima para que el texto se lea perfecto.
 - Página **ancha** (hasta 1440 px) con el banco de ejercicios en dos columnas
   en pantallas grandes; se adapta a móvil y tablet.
 

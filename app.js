@@ -22,6 +22,11 @@ const MOTIVATION_OK = [
   "¡Correcto! Eres un crack 🏆","¡Impresionante! 🎯","¡Brillante! Sigue acumulando puntos ✨",
   "¡That's it! Lo tienes claro 🧠"
 ];
+const MOTIVATION_NO = [
+  "Casi… vamos a verlo juntos 👇","No pasa nada, aprende de este error 📖",
+  "¡Uy! Casi. Mira la explicación 👀","Tranquilo/a, con esto lo sacarás 💡",
+  "Sigue intentándolo: ya queda menos 💥","Un error más para aprender. ¡Vamos! 🔥"
+];
 const ADRIANA_OK = [
   "¡Muy bien, Adriana! 🌟","¡Otro para ti, Adriana! 🏆","¡Qué fuerte eres, Adriana! 💪",
   "¡Genial, Adriana! Lo estás clavando 🚀","¡Eres increíble, Adriana! 🎉",
@@ -46,7 +51,8 @@ function praise(){ return Math.random() < 0.7 ? pick(ADRIANA_OK) : pick(MOTIVATI
 function consolation(){ return Math.random() < 0.7 ? pick(ADRIANA_NO) : pick(MOTIVATION_NO); }
 
 /* ---------------- Estado / puntos ---------------- */
-const STORE_KEY = "angles_tenses_v1";
+/* v2: reinicio de puntos (Adriana empieza desde cero) */
+const STORE_KEY = "angles_tenses_v2";
 let state = { points:0, streak:0, best:0, solved:0, failed:0, done:{} };
 try{
   const raw = localStorage.getItem(STORE_KEY);
@@ -76,6 +82,190 @@ function toast(msg){
   t.classList.add("show");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+/* =========================================================
+   DICCIÓNARIO: traducción al pasar el ratón, al seleccionar
+   una frase y cuadro fijo arriba del todo
+   ========================================================= */
+const dictCache = new Map();
+function escHtml(s){
+  return String(s==null?"":s).replace(/[&<>"']/g, c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+/* Traducción EN→ES (MyMemory) + definición (dictionaryapi.dev), con caché */
+async function lookup(text){
+  const key = String(text||"").trim().toLowerCase();
+  if(!key) return {es:"", def:"", phon:""};
+  if(dictCache.has(key)) return dictCache.get(key);
+  const out = {es:"", def:"", phon:""};
+  if(typeof fetch !== "function"){
+    out.es = "⚠️ Este navegador no permite consultar el diccionario";
+    return out;
+  }
+  try{
+    const results = await Promise.allSettled([
+      fetch("https://api.mymemory.translated.net/get?q="+encodeURIComponent(key)+"&langpair=en|es")
+        .then(r=>r.json()),
+      fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+encodeURIComponent(key.split(/\s+/)[0]))
+        .then(r=> r.ok ? r.json() : Promise.reject()).catch(()=>null)
+    ]);
+    const tr = results[0];
+    if(tr.status === "fulfilled"){
+      const t = (tr.value && tr.value.responseData && tr.value.responseData.translatedText) || "";
+      if(t && t.toLowerCase() !== key && !/mymemory warning/i.test(t)) out.es = t;
+    }
+    const dic = results[1];
+    if(dic.status === "fulfilled" && Array.isArray(dic.value) && dic.value[0]){
+      const d = dic.value[0];
+      out.phon = d.phonetic || (d.phonetics && d.phonetics[0] && d.phonetics[0].text) || "";
+      const m = d.meanings && d.meanings[0];
+      out.def = (m && m.definitions && m.definitions[0] && m.definitions[0].definition) || "";
+    }
+  }catch(e){ /* sin conexión */ }
+  if(!out.es) out.es = "⚠️ Sin conexión: no se pudo traducir";
+  else dictCache.set(key, out);
+  return out;
+}
+
+/* ---- Cuadro de diccionario de la cabecera ---- */
+async function doDict(text){
+  const drop = document.getElementById("dictDrop");
+  if(!drop) return;
+  text = String(text||"").trim();
+  if(!text){ drop.hidden = true; drop.innerHTML = ""; return; }
+  drop.hidden = false;
+  drop.innerHTML = '<div class="row"><span>⏳ Traduciendo…</span></div>';
+  const r = await lookup(text);
+  if(document.getElementById("dictInput").value.trim().toLowerCase() !== text.toLowerCase()) return;
+  drop.innerHTML = `
+    <div class="row">
+      <div>
+        <div class="es">🌍 ${escHtml(r.es)}</div>
+        ${r.phon ? `<div class="phon">${escHtml(r.phon)}</div>` : ""}
+        ${r.def ? `<div class="def"><b>${escHtml(text.split(/\s+/)[0])}</b>: ${escHtml(r.def)}</div>` : ""}
+      </div>
+      <button class="btn ghost" id="dictSay" style="padding:4px 10px;flex:none" title="Escuchar">🔊</button>
+    </div>`;
+  const say = document.getElementById("dictSay");
+  if(say) say.addEventListener("click", ()=> speak(text));
+}
+
+/* ---- Tooltip: significado al pasar el ratón sobre una palabra ---- */
+function ensureTip(id, cls){
+  let tip = document.getElementById(id);
+  if(!tip){
+    tip = document.createElement("div");
+    tip.id = id; tip.className = cls; tip.hidden = true;
+    document.body.appendChild(tip);
+  }
+  return tip;
+}
+function posTip(tip, x, y){
+  tip.style.left = Math.max(6, Math.min(x+14, window.innerWidth-340)) + "px";
+  tip.style.top  = Math.max(6, Math.min(y+18, window.innerHeight-100)) + "px";
+}
+/* Palabra bajo el cursor (Chrome/Edge: caretRangeFromPoint · Firefox: caretPositionFromPoint) */
+function wordAtPoint(x,y){
+  const d = document;
+  let node = null, offset = 0;
+  if(typeof d.caretRangeFromPoint === "function"){
+    const r = d.caretRangeFromPoint(x,y);
+    if(r){ node = r.startContainer; offset = r.startOffset; }
+  }else if(typeof d.caretPositionFromPoint === "function"){
+    const p = d.caretPositionFromPoint(x,y);
+    if(p){ node = p.offsetNode; offset = p.offset; }
+  }else return null;
+  if(!node || node.nodeType !== 3) return null;
+  const text = node.textContent || "";
+  let s = offset, e = offset;
+  while(s>0 && /[A-Za-z'’-]/.test(text[s-1])) s--;
+  while(e<text.length && /[A-Za-z'’-]/.test(text[e])) e++;
+  const w = text.slice(s,e).replace(/^[^A-Za-z]+|[^A-Za-z]+$/g,"");
+  return w.length>=2 ? w : null;
+}
+let tipWord = "", tipTimer = null;
+function hideWordTip(){
+  const t = document.getElementById("wordTip");
+  if(t) t.hidden = true;
+  tipWord = "";
+}
+function initWordTips(){
+  const tip = ensureTip("wordTip","word-tip");
+  document.addEventListener("mousemove", e=>{
+    const tgt = e.target;
+    if(!tgt || !tgt.closest) return;
+    const host = tgt.closest(".en, .q, .inst, .ex-en");
+    if(!host || tgt.closest("input, button, a")){ hideWordTip(); return; }
+    const w = wordAtPoint(e.clientX, e.clientY);
+    if(!w){ hideWordTip(); return; }
+    if(w.toLowerCase() === tipWord && !tip.hidden){ posTip(tip, e.clientX, e.clientY); return; }
+    tipWord = w.toLowerCase();
+    clearTimeout(tipTimer);
+    tip.hidden = true;
+    const x = e.clientX, y = e.clientY;
+    tipTimer = setTimeout(async ()=>{
+      tip.hidden = false;
+      tip.innerHTML = `<span style="opacity:.75">⏳</span> <b>${escHtml(w)}</b>`;
+      posTip(tip, x, y);
+      const r = await lookup(w);
+      if(tipWord !== w.toLowerCase()) return;
+      tip.innerHTML = `${r.phon ? `<span style="opacity:.7">${escHtml(r.phon)}</span> · ` : ""}<b>${escHtml(r.es)}</b>` +
+        (r.def ? `<br><span style="opacity:.85;font-size:12px">${escHtml(r.def)}</span>` : "");
+      posTip(tip, x, y);
+    }, 300);
+  });
+  document.addEventListener("scroll", hideWordTip, true);
+}
+
+/* ---- Traducción de la frase seleccionada ---- */
+let selTimer = null;
+function hideSelTip(){
+  const t = document.getElementById("selTip");
+  if(t) t.hidden = true;
+}
+function initSelectionTip(){
+  ensureTip("selTip","sel-tip");
+  document.addEventListener("mouseup", e=>{
+    if(e.target && e.target.closest && e.target.closest("#selTip, #dictBox, input, textarea")) return;
+    clearTimeout(selTimer);
+    selTimer = setTimeout(showSelTranslation, 350);
+  });
+  document.addEventListener("mousedown", e=>{
+    if(!(e.target && e.target.closest && e.target.closest("#selTip"))) hideSelTip();
+  });
+  window.addEventListener("scroll", hideSelTip, {passive:true});
+}
+async function showSelTranslation(){
+  hideSelTip();
+  let sel = null;
+  try{ sel = document.getSelection(); }catch(e){ return; }
+  if(!sel || sel.isCollapsed) return;
+  const text = sel.toString().trim().replace(/\s+/g," ");
+  if(text.length < 2 || text.length > 300) return;
+  const node = sel.anchorNode;
+  const el = node && (node.nodeType===1 ? node : node.parentElement);
+  if(el && el.closest && el.closest("input, textarea, #dictBox")) return;
+  const tip = ensureTip("selTip","sel-tip");
+  let rect = null;
+  try{
+    const rng = sel.getRangeAt(0);
+    rect = rng.getBoundingClientRect && rng.getBoundingClientRect();
+  }catch(e){}
+  if(!rect || (!rect.top && !rect.left && !rect.width)){
+    rect = (el && el.getBoundingClientRect) ? el.getBoundingClientRect() : {top:90, left:90};
+  }
+  tip.hidden = false;
+  tip.innerHTML = "⏳ Traduciendo…";
+  tip.style.left = Math.max(8, Math.min(rect.left, window.innerWidth-340)) + "px";
+  tip.style.top  = Math.max(8, rect.top - 56) + "px";
+  const r = await lookup(text);
+  tip.innerHTML = `🌍 <b>${escHtml(r.es)}</b>` +
+    (r.def ? `<br><span style="opacity:.85;font-size:12px">${escHtml(r.def)}</span>` : "") +
+    ` <button class="btn" id="selSay" style="padding:2px 9px;font-size:12px;margin-left:6px" title="Escuchar">🔊</button>`;
+  const say = document.getElementById("selSay");
+  if(say) say.addEventListener("click", ()=> speak(text));
 }
 
 /* ---------------- Normalización de respuestas ---------------- */
@@ -636,6 +826,27 @@ document.addEventListener("DOMContentLoaded", ()=>{
       cheerEl.textContent = CHEERS[cheerIdx];
     }, 7000);
   }
+
+  /* Diccionario fijo de la cabecera */
+  const dictInput = document.getElementById("dictInput");
+  if(dictInput){
+    let dictTimer = null;
+    dictInput.addEventListener("input", ()=>{
+      clearTimeout(dictTimer);
+      dictTimer = setTimeout(()=> doDict(dictInput.value), 450);
+    });
+    dictInput.addEventListener("keydown", e=>{
+      if(e.key === "Enter"){ e.preventDefault(); clearTimeout(dictTimer); doDict(dictInput.value); }
+      if(e.key === "Escape"){ const d = document.getElementById("dictDrop"); if(d) d.hidden = true; }
+    });
+  }
+  document.addEventListener("click", e=>{
+    const box = document.getElementById("dictBox");
+    const drop = document.getElementById("dictDrop");
+    if(box && drop && !box.contains(e.target)) drop.hidden = true;
+  });
+  initWordTips();
+  initSelectionTip();
 
   document.querySelectorAll(".tab").forEach(t=>{
     t.addEventListener("click", ()=> switchTab(t.dataset.tab));
