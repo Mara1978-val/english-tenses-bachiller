@@ -848,6 +848,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
   initWordTips();
   initSelectionTip();
 
+  /* La cabecera cambia de alto en móvil (el diccionario pasa a 2ª fila):
+     medimos y lo indicamos para que las pestañas sticky no se solapen */
+  function syncTopbarH(){
+    const tb = document.querySelector(".topbar");
+    if(!tb) return;
+    const h = tb.offsetHeight;
+    document.documentElement.style.setProperty("--topbar-h", (h > 0 ? h : 64) + "px");
+  }
+  syncTopbarH();
+  window.addEventListener("resize", syncTopbarH);
+  window.addEventListener("orientationchange", ()=> setTimeout(syncTopbarH, 250));
+  window.addEventListener("load", syncTopbarH);
+
   document.querySelectorAll(".tab").forEach(t=>{
     t.addEventListener("click", ()=> switchTab(t.dataset.tab));
   });

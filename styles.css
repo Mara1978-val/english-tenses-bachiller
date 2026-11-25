@@ -13,8 +13,10 @@
   --radius:14px;
 }
 *{box-sizing:border-box}
+html{overflow-x:clip}
 body{
   margin:0;
+  overflow-x:clip; /* por si algo desborda, la página nunca se corta en horizontal */
   font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
   color:var(--ink);
   line-height:1.5;
@@ -41,15 +43,6 @@ body{
 .brand .logo{font-size:32px}
 .brand h1{margin:0;font-size:20px;letter-spacing:.4px}
 .brand p{margin:0;font-size:12px;opacity:.85}
-@media(max-width:760px){
-  .brand p{display:none}
-  .brand h1{font-size:16px}
-  .brand .logo{font-size:24px}
-  .dict{min-width:110px}
-  .dict input{padding:7px 11px;font-size:13px}
-  .points-box{padding:6px 10px;font-size:14px;gap:5px}
-  .points-box .pts-label{display:none}
-}
 
 /* ---------- Cartel de ánimo para Adriana ---------- */
 .cheer{
@@ -106,7 +99,7 @@ body{
 
 /* ---------- Tooltip al pasar el ratón sobre una palabra ---------- */
 .word-tip,.sel-tip{
-  position:fixed;z-index:80;max-width:330px;
+  position:fixed;z-index:80;max-width:min(330px,86vw);
   background:#0f3d2e;color:#fff;border-radius:10px;
   padding:8px 11px;font-size:13.5px;line-height:1.45;
   box-shadow:0 10px 26px rgba(0,0,0,.3);pointer-events:none;
@@ -123,7 +116,7 @@ body{
 .tabs{
   display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
   padding:14px 12px;background:#fff;border-bottom:1px solid var(--border);
-  position:sticky;top:64px;z-index:40;
+  position:sticky;top:var(--topbar-h,64px);z-index:40;
 }
 .tab{
   border:1px solid var(--border);background:#f8f9fd;color:var(--ink);
@@ -293,17 +286,59 @@ button.danger:hover{background:#ffe3e3}
   position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);
   background:#1f2430;color:#fff;padding:12px 22px;border-radius:999px;
   font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:.3s;z-index:100;
+  max-width:calc(100vw - 32px);white-space:normal;text-align:center;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}
 
+/* ---------- Móvil / tablet: nada debe desbordar ---------- */
+@media(max-width:760px){
+  /* Cabecera: marca + puntos arriba, diccionario en su propia fila (siempre visible) */
+  .topbar{flex-wrap:wrap;gap:8px 10px;padding:10px 12px}
+  .brand{flex:0 1 auto;min-width:0}
+  .brand p{display:none}
+  .brand h1{font-size:16px;white-space:nowrap}
+  .brand .logo{font-size:24px}
+  .points-box{flex:none;margin-left:auto;padding:6px 10px;font-size:14px;gap:5px}
+  .points-box .pts-label{display:none}
+  .dict{flex:1 1 100%;order:3;max-width:none;min-width:0}
+  .dict input{padding:9px 14px;font-size:16px} /* 16px: evita el zoom automático al enfocar */
+
+  /* Pestañas: una sola fila que se desliza, nunca se cortan */
+  .tabs{
+    flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 8px;
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;white-space:nowrap;padding:8px 12px;font-size:13px}
+
+  /* Fondo: sin attachment fixed (mejor rendimiento en Android) */
+  body{background-attachment:scroll, scroll}
+
+  /* Tablas: el texto nunca empuja la página fuera de la pantalla */
+  .form-table{table-layout:fixed}
+  .form-table th{width:auto}
+  .form-table td,.form-table th{word-break:break-word;overflow-wrap:anywhere;padding:7px 8px}
+
+  /* Textos largos y soluciones */
+  .q,.feedback,.ex .en,.paragraph{overflow-wrap:anywhere}
+  .q .blank{min-width:96px}
+  main{padding:14px 10px 60px}
+  .intro{padding:14px 14px}
+  .intro h2{font-size:19px}
+  .ex-card,.text-card{padding:14px}
+  .cheer{gap:8px;padding:9px 10px}
+  .cheer #cheerText{font-size:14px}
+}
+
 @media(max-width:640px){
-  .brand h1{font-size:17px}
-  .tabs{top:60px;padding:10px 8px}
-  .tab{padding:8px 12px;font-size:13px}
   .answer-row{flex-direction:column;align-items:stretch}
   button.btn{width:100%}
+  input.txt{min-width:0;width:100%}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .stat{padding:12px 8px}
+  .stat .num{font-size:26px}
 }
 
 /* ---------- Pantallas anchas: aprovechamos el ancho ---------- */
