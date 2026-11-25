@@ -15,16 +15,35 @@ const ALL_TEXTS = [typeof TEXTS!=="undefined"?TEXTS:[], typeof TEXTS2!=="undefin
                    typeof TEXTS3!=="undefined"?TEXTS3:[], typeof TEXTS4!=="undefined"?TEXTS4:[],
                    typeof TEXTS5!=="undefined"?TEXTS5:[]].flat();
 
+/* ---------------- Mensajes motivadores (personalizados para Adriana) ---------------- */
+const STUDENT = "Adriana";
 const MOTIVATION_OK = [
   "¡Muy bien! 🎉","¡Excelente! 🌟","¡Perfecto! Sigue así 💪","¡Genial, lo has dominado! 🚀",
   "¡Correcto! Eres un crack 🏆","¡Impresionante! 🎯","¡Brillante! Sigue acumulando puntos ✨",
   "¡That's it! Lo tienes claro 🧠"
 ];
-const MOTIVATION_NO = [
-  "Casi… vamos a verlo juntos 👇","No pasa nada, aprende de este error 📖",
-  "¡Uy! Casi. Mira la explicación 👀","Tranquilo/a, con esto lo sacarás 💡",
-  "Sigue intentándolo: ya queda menos 💥","Un error más para aprender. ¡Vamos! 🔥"
+const ADRIANA_OK = [
+  "¡Muy bien, Adriana! 🌟","¡Otro para ti, Adriana! 🏆","¡Qué fuerte eres, Adriana! 💪",
+  "¡Genial, Adriana! Lo estás clavando 🚀","¡Eres increíble, Adriana! 🎉",
+  "¡Brillante, Adriana! Sigue así ✨","¡Lo tienes clarísimo, Adriana! 🧠",
+  "¡Impresionante, Adriana! 🎯","¡Súper, Adriana! Un paso más hacia el dominio 🔥",
+  "¡Wow, Adriana! Los verbos ingleses tiemblan contigo 🇬🇧"
 ];
+const ADRIANA_NO = [
+  "Casi, Adriana… vamos a verlo juntos 👇","No pasa nada, Adriana: de los errores se aprende 📖",
+  "¡Uy, Adriana! Mira la explicación 👀","Tranquilo, Adriana, con esto lo sacarás 💡",
+  "Sigue intentándolo, Adriana: ya queda menos 💥","Un error más para aprender, Adriana. ¡Vamos! 🔥"
+];
+const CHEERS = [
+  "¡Ánimo, Adriana! 💪 Hoy vas a arrasar con los tiempos verbales 🚀",
+  "Adriana, tú puedes: cada ejercicio te acerca más al 10 ⭐",
+  "¡Escribe, falla, aprende y repite, Adriana! 📚 Así se domina un idioma",
+  "Pequeños pasos cada día, gran resultado, Adriana ✨",
+  "¡Los verbos ingleses no se te resisten, Adriana! 🇬🇧🔥",
+  "Adriana, eres capaz de todo lo que te propongas 🌟 ¡Hoy es un gran día!"
+];
+function praise(){ return Math.random() < 0.7 ? pick(ADRIANA_OK) : pick(MOTIVATION_OK); }
+function consolation(){ return Math.random() < 0.7 ? pick(ADRIANA_NO) : pick(MOTIVATION_NO); }
 
 /* ---------------- Estado / puntos ---------------- */
 const STORE_KEY = "angles_tenses_v1";
@@ -44,7 +63,7 @@ function addPoints(n, silent){
   const box = document.getElementById("pointsBox");
   document.getElementById("pointsValue").textContent = state.points;
   box.classList.remove("bump"); void box.offsetWidth; box.classList.add("bump");
-  if(!silent) toast("+" + n + " puntos ⭐");
+  if(!silent) toast("+" + n + " puntos ⭐ ¡Vamos, " + STUDENT + "!");
   renderStreak();
 }
 function renderStreak(){
@@ -187,13 +206,13 @@ function bindCard(card, ex){
     feedback.className = "feedback show " + (allOk ? "good" : "bad");
     if(allOk){
       feedback.innerHTML = `
-        <div class="title">✅ ${pick(MOTIVATION_OK)}${pts ? `<span class="points-pill">+${pts} puntos</span>` : (already ? '<span class="points-pill small">ya lo tenías ✅</span>' : "")}</div>
+        <div class="title">✅ ${praise()}${pts ? `<span class="points-pill">+${pts} puntos</span>` : (already ? '<span class="points-pill small">ya lo tenías ✅</span>' : "")}</div>
         <div class="why">${ex.why}</div>`;
     }else{
       const your = inputs.map(i=>i.value.trim() || "—").join(" / ");
       const sol  = answersFor(ex).map(a=>a[0]).join(" ... ");
       feedback.innerHTML = `
-        <div class="title">❌ ${pick(MOTIVATION_NO)}</div>
+        <div class="title">❌ ${consolation()}</div>
         <div class="why"><b>Tu respuesta:</b> ${your || "—"}<br><b>Solución correcta:</b> ${sol}</div>
         <div class="why">${ex.why}</div>`;
       inputs[firstBad] && inputs[firstBad].focus();
@@ -427,10 +446,10 @@ function bindText(card, t){
 
     feedback.className = "feedback show " + (wrongs.length===0 ? "good" : "bad");
     if(wrongs.length===0){
-      feedback.innerHTML = `<div class="title">✅ ¡Texto completo! ${pick(MOTIVATION_OK)}<span class="points-pill">+${pts} puntos</span></div>
+      feedback.innerHTML = `<div class="title">✅ ¡Texto completo, Adriana! ${praise()}<span class="points-pill">+${pts} puntos</span></div>
         <div class="why">Pulsa <b>🔊 Listening</b> para oír el texto entero en inglés y comprobar la entonación.</div>`;
     }else{
-      feedback.innerHTML = `<div class="title">❌ ${wrongs.length} de ${inputs.length} huecos fallan. ${pick(MOTIVATION_NO)}</div>` +
+      feedback.innerHTML = `<div class="title">❌ ${wrongs.length} de ${inputs.length} huecos fallan. ${consolation()}</div>` +
         wrongs.map(w=>`<div class="why"><b>Hueco ${w.i+1}:</b> ${w.your || "—"} → <b>${w.b.a[0]}</b><br>${w.b.why}</div>`).join("") +
         (okCount? `<div class="why">✔ Has acertado ${okCount} huecos.</div>`:"");
     }
@@ -600,6 +619,23 @@ function switchTab(name){
 document.addEventListener("DOMContentLoaded", ()=>{
   document.getElementById("pointsValue").textContent = state.points;
   renderStreak();
+
+  /* Saludo de bienvenida para Adriana */
+  setTimeout(()=>{
+    toast(state.points > 0
+      ? `¡Bienvenida de nuevo, ${STUDENT}! Llevas ${state.points} puntos ⭐`
+      : `¡Bienvenida, ${STUDENT}! 🌟 Vamos a empezar fuerte 💪`);
+  }, 500);
+
+  /* Cartel de ánimo: rotación de mensajes */
+  let cheerIdx = 0;
+  const cheerEl = document.getElementById("cheerText");
+  if(cheerEl){
+    setInterval(()=>{
+      cheerIdx = (cheerIdx + 1) % CHEERS.length;
+      cheerEl.textContent = CHEERS[cheerIdx];
+    }, 7000);
+  }
 
   document.querySelectorAll(".tab").forEach(t=>{
     t.addEventListener("click", ()=> switchTab(t.dataset.tab));

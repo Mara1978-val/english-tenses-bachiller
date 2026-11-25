@@ -91,14 +91,28 @@ El ejercicio de las fotos 5 y 6:
   (aparece en cuanto el alumno ve la solución).
 
 ## 🎨 Diseño
-Fondo **verde claro** y página **ancha** (hasta 1440 px) con el banco de ejercicios
-en dos columnas en pantallas grandes; se adapta a móvil y tablet.
+- **Fondo tipo portadas de libros juveniles** (`bg-covers.svg`: montañas, lunas, olas,
+  estrellas… en tonos teal, coral, oro y lavanda) con un velo verde claro por encima
+  para que el texto se lea perfecto.
+- Página **ancha** (hasta 1440 px) con el banco de ejercicios en dos columnas
+  en pantallas grandes; se adapta a móvil y tablet.
+
+## 💜 Personalizado para Adriana
+- **Cartel de ánimo** en la cabecera con mensajes que rotan cada 7 segundos
+  (*«¡Ánimo, Adriana! 💪 Hoy vas a arrasar con los tiempos verbales 🚀»*…).
+- **Saludo de bienvenida** al abrir la web y título personal en *Teoría* y *Mis puntos*.
+- **Mensajes motivadores con su nombre** cada vez que acierta
+  (*«¡Muy bien, Adriana! 🌟», «¡Eres increíble, Adriana! 🎉»*…) y de ánimo al fallar
+  (*«No pasa nada, Adriana: de los errores se aprende 📖»*…).
+- Toast de puntos con recordatorio (*«+10 puntos ⭐ ¡Vamos, Adriana!»*) y mensaje
+  en el pie de página.
 
 ## 📁 Archivos
 ```
 app/
 ├── index.html       ← abrir este archivo
 ├── styles.css       ← diseño (fondo verde claro, página ancha)
+├── bg-covers.svg    ← fondo de portadas de libros juveniles
 ├── theory.js        ← teoría base de los 10 tiempos
 ├── theory_extra.js  ← ortografía, stative verbs, palabras clave y guía rápida
 ├── prepositions.js  ← teoría + 80 ejercicios de preposiciones

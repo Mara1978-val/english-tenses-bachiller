@@ -16,9 +16,17 @@
 body{
   margin:0;
   font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg);
   color:var(--ink);
   line-height:1.5;
+  /* Fondo tipo portadas de libros juveniles (patrón vectorial) + velo verde claro */
+  background-color:#e6f6ec;
+  background-image:
+    linear-gradient(rgba(230,246,236,.86), rgba(230,246,236,.9)),
+    url("bg-covers.svg");
+  background-repeat:repeat, repeat;
+  background-size:auto, 400px 400px;
+  background-attachment:fixed, fixed;
+  background-position:center, 0 0;
 }
 
 /* ---------- Top bar ---------- */
@@ -33,6 +41,25 @@ body{
 .brand .logo{font-size:32px}
 .brand h1{margin:0;font-size:20px;letter-spacing:.4px}
 .brand p{margin:0;font-size:12px;opacity:.85}
+
+/* ---------- Cartel de ánimo para Adriana ---------- */
+.cheer{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:11px 16px;text-align:center;
+  background:linear-gradient(100deg,#fff3b0 0%,#ffd8a8 35%,#b2f2bb 75%,#96f7d2 100%);
+  border-bottom:3px solid #f2b705;
+  box-shadow:0 4px 14px rgba(30,80,55,.12);
+}
+.cheer #cheerText{
+  font-weight:800;font-style:italic;font-size:16px;color:#0f5132;
+  letter-spacing:.3px;text-shadow:0 1px 0 rgba(255,255,255,.7);
+}
+.cheer-emoji{font-size:19px;animation:cheerWiggle 2.6s ease-in-out infinite}
+.cheer-emoji:last-child{animation-delay:1.3s}
+@keyframes cheerWiggle{
+  0%,100%{transform:rotate(-8deg) scale(1)}
+  50%{transform:rotate(8deg) scale(1.18)}
+}
 .points-box{
   display:flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.16);
